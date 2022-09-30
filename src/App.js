@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
+import { intcrement, decrement } from "../src/Redux/Action/Action";
 function App() {
+  const counter = useSelector((state) => state.count.counter);
+  const dispacth = useDispatch();
+
+  const intfun = () => {
+    dispacth(intcrement(5));
+  };
+  const decfun = () => {
+    dispacth(decrement(5));
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>React Redux</h2>
+      <div className="container">
+        <div className="redux-data mt-5">
+          <button onClick={decfun} type="button" className="btn btn-success">
+            -
+          </button>
+          <p>{counter}</p>
+
+          <button onClick={intfun} type="button" className="btn btn-primary">
+            +
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
